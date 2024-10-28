@@ -26,8 +26,8 @@ describe("HeaderCategories", () => {
     });
 
     const links = screen.getAllByRole("link");
-    const lastLink = links[links.length - 1];
+    const activeLink = links[links.length - 2];
 
-    expect(lastLink).toHaveAttribute("data-testid", "nav-link");
+    expect(activeLink).toHaveAttribute("data-testid", "nav-link");
   });
 });
