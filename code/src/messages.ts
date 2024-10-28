@@ -36,10 +36,13 @@ import orderPageMessages from "@/pages/orders/messages";
 import productDetailsMessages from "@/pages/product-details/messages";
 import productsItemsMessages from "@/pages/products/messages";
 
+import movieCommonMessages from "./constants/movie-common-messages";
+
 type MessagesType = Record<Locale, Record<string, string>>;
 
 const messages: MessagesType = {
   en: {
+    ...movieCommonMessages.en,
     ...commonMessages.en,
     ...footerMessages.en,
     ...headerMessages.en,
@@ -78,6 +81,7 @@ const messages: MessagesType = {
     ...dashboardProductMessages.en
   },
   uk: {
+    ...movieCommonMessages.uk,
     ...commonMessages.uk,
     ...footerMessages.uk,
     ...headerMessages.uk,
