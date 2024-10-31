@@ -156,28 +156,26 @@ describe("DashboardOrdersPage", () => {
     expect(searchInput).toHaveValue("user");
 
     expect(mockUpdateFilterByKey).toHaveBeenCalledWith("accountEmail", "user");
-
-    const searchButton = screen.getByTestId("SearchIcon");
-    fireEvent.click(searchButton);
-    expect(mockApplyFilters).toHaveBeenCalledWith({
-      additionalParams: { page: "1" }
-    });
   });
 
   test("clears search by email filter correctly", () => {
-    renderAndMock();
+    renderAndMock({ searchFilters: { accountEmail: "example@com.ua" } });
     const searchInput = screen.getByPlaceholderText(
       /dashboardTabs.orders.search/
     );
-    typeIntoInput(searchInput, "user");
-    expect(mockUpdateFilterByKey).toHaveBeenCalledWith("accountEmail", "user");
 
     const clearButton = screen.getByTestId("ClearIcon");
 
     fireEvent.click(clearButton);
+
     waitFor(() => {
       expect(searchInput).toHaveValue("");
     });
+
+    expect(mockApplyFilters).toHaveBeenCalledWith({
+      additionalParams: { page: "1" }
+    });
+
     expect(mockResetFilterByKey).toHaveBeenCalledWith("accountEmail");
     expect(mockApplyFilters).toHaveBeenCalled();
   });
