@@ -4,6 +4,9 @@ const routes = {
   home: {
     path: "/"
   },
+  movies: {
+    path: "/movies"
+  },
   products: {
     path: "/products"
   },
