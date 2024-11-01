@@ -35,6 +35,7 @@ import notFoundMessages from "@/pages/not-found/messages";
 import orderPageMessages from "@/pages/orders/messages";
 import productDetailsMessages from "@/pages/product-details/messages";
 import productsItemsMessages from "@/pages/products/messages";
+import weatherMessages from "@/pages/weather/messages";
 
 import movieCommonMessages from "./constants/movie-common-messages";
 
@@ -78,7 +79,8 @@ const messages: MessagesType = {
     ...productFormMessages.en,
     ...dashboardOrderDetailsPageMessages.en,
     ...productDetailsMessages.en,
-    ...dashboardProductMessages.en
+    ...dashboardProductMessages.en,
+    ...weatherMessages.en
   },
   uk: {
     ...movieCommonMessages.uk,
@@ -116,7 +118,8 @@ const messages: MessagesType = {
     ...usersTableMessages.uk,
     ...dashboardOrderDetailsPageMessages.uk,
     ...productDetailsMessages.uk,
-    ...dashboardProductMessages.uk
+    ...dashboardProductMessages.uk,
+    ...weatherMessages.uk
   }
 };
 

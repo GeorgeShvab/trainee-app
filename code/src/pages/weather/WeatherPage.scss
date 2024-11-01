@@ -1,0 +1,9 @@
+@import "@design-system";
+
+.spa-weather-page {
+  padding: spacing(10);
+  background-color: var(--spa-foreground-background-color, $white);
+  display: flex;
+  flex-direction: column;
+  gap: spacing(5);
+}
