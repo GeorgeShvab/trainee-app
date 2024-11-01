@@ -5,5 +5,6 @@ export const categories = [
   { label: "productsAll.computer", href: routes.computers.path },
   { label: "productsAll.tablet", href: routes.tablets.path },
   { label: "productsAll.mobile", href: routes.mobiles.path },
+  { label: "movies", href: routes.movies.path },
   { label: "weather.label", href: routes.weather.path }
 ];

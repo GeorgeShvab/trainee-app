@@ -37,10 +37,13 @@ import productDetailsMessages from "@/pages/product-details/messages";
 import productsItemsMessages from "@/pages/products/messages";
 import weatherMessages from "@/pages/weather/messages";
 
+import movieCommonMessages from "./constants/movie-common-messages";
+
 type MessagesType = Record<Locale, Record<string, string>>;
 
 const messages: MessagesType = {
   en: {
+    ...movieCommonMessages.en,
     ...commonMessages.en,
     ...footerMessages.en,
     ...headerMessages.en,
@@ -80,6 +83,7 @@ const messages: MessagesType = {
     ...weatherMessages.en
   },
   uk: {
+    ...movieCommonMessages.uk,
     ...commonMessages.uk,
     ...footerMessages.uk,
     ...headerMessages.uk,

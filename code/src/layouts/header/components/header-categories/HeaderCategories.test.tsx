@@ -26,7 +26,7 @@ describe("HeaderCategories", () => {
     });
 
     const links = screen.getAllByRole("link");
-    const activeLink = links[links.length - 2];
+    const activeLink = links[links.length - 3];
 
     expect(activeLink).toHaveAttribute("data-testid", "nav-link");
   });
