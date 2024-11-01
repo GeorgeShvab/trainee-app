@@ -21,6 +21,10 @@ const renderComponent = (props: Partial<AppSearchInputProps> = mockProps) => {
 };
 
 describe("AppSearchInput ", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("Should render search input field", () => {
     renderComponent();
 
@@ -55,6 +59,26 @@ describe("AppSearchInput ", () => {
     const searchButton = screen.getByTestId(/SearchIcon/);
     fireEvent.click(searchButton);
     expect(handleSearch).toHaveBeenCalled();
+  });
+
+  test("Should call onSearch when enter is clicked", () => {
+    renderComponent();
+
+    const inputElement = screen.getByPlaceholderText(placeholder);
+
+    fireEvent.keyUp(inputElement, { code: "Enter" });
+
+    expect(handleSearch).toHaveBeenCalled();
+  });
+
+  test("Should not call onSearch when enter is clicked if there is no onSearch", () => {
+    renderComponent({ onSearch: undefined });
+
+    const inputElement = screen.getByPlaceholderText(placeholder);
+
+    fireEvent.keyUp(inputElement, { code: "Enter" });
+
+    expect(handleSearch).not.toHaveBeenCalled();
   });
 
   test("Should call onClear when clear button is clicked", () => {
