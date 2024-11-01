@@ -6,6 +6,7 @@ import { GetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware
 import { appApi } from "@/store/api/appApi";
 import cartLocalSavingMiddleware from "@/store/cartLocalSavingMiddleware";
 import { errorMiddleware } from "@/store/errorMiddleware";
+import { baseMovieApi } from "@/store/movieApi/baseMovieApi";
 import { reducer } from "@/store/reducer";
 
 const middleware = <State>(
@@ -13,6 +14,7 @@ const middleware = <State>(
 ) => {
   return getDefaultMiddleware()
     .concat(appApi.middleware)
+    .concat(baseMovieApi.middleware)
     .concat(errorMiddleware)
     .concat(cartLocalSavingMiddleware);
 };

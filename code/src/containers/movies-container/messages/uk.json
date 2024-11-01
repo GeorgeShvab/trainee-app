@@ -1,0 +1,4 @@
+{
+  "moviesContainer.errorFallback": "Трапилася неочікувана помилка!",
+  "moviesContainer.notFoundFallback": "Ми не змогли знайти фільми за вашим запитом."
+}

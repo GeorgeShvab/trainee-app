@@ -1,0 +1,5 @@
+{
+  "moviesPage.title": "Пошук фільмів",
+  "moviesPage.resultsCount": "Знайдено {count} фільмів за вашим запитом",
+  "moviesPage.emptyQueryFallback": "Шукаєте що би подивитися? Введіть назву фільму та натисніть шукати!"
+}

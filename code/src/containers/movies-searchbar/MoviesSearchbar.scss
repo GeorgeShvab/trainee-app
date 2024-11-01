@@ -1,0 +1,14 @@
+@import "@design-system";
+
+.movies-searchbar {
+  display: flex;
+  gap: spacing(3);
+}
+
+.movies-searchbar__input {
+  width: 100%;
+}
+
+.movies-searchbar__submit-btn {
+  border-radius: 5px;
+}

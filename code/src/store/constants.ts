@@ -1,5 +1,6 @@
 export const apiNames = {
-  app: "appApi"
+  app: "appApi",
+  movie: "movieApi"
 } as const;
 
 export const sliceNames = {

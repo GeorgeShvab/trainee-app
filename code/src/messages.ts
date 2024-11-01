@@ -13,6 +13,8 @@ import signInFormMessages from "@/containers/forms/sign-in-form/messages";
 import signupFormMessages from "@/containers/forms/sign-up-form/messages";
 import bannerMessages from "@/containers/intro-banner/messages";
 import authModalMessages from "@/containers/modals/auth/messages";
+import moviesContainerMessages from "@/containers/movies-container/messages";
+import moviesSearchbarMessages from "@/containers/movies-searchbar/messages";
 import orderItemMessages from "@/containers/order-item/messages";
 import subintroMessages from "@/containers/subintro/messages";
 import ordersTableMessages from "@/containers/tables/orders-table/messages";
@@ -23,6 +25,7 @@ import dropDownMessages from "@/components/app-dropdown/messages";
 import productCardMessages from "@/components/product-card/messages";
 
 import commonMessages from "@/constants/common-messages";
+import movieCommonMessages from "@/constants/movie-common-messages";
 import { Locale } from "@/context/i18n/I18nProvider";
 import cartPageMessages from "@/pages/cart/messages";
 import dashboardOrderDetailsPageMessages from "@/pages/dashboard-order-details/messages";
@@ -31,13 +34,12 @@ import dashboardOrdersPageMessages from "@/pages/dashboard/dashboard-orders/mess
 import dashboardProductMessages from "@/pages/dashboard/dashboard-product/messages";
 import dashboardProductsPageMessages from "@/pages/dashboard/dashboard-products/messages";
 import dashboardUpdateProductPageMessages from "@/pages/dashboard/dashboard-update-product/messages";
+import moviePageMessages from "@/pages/movies/messages";
 import notFoundMessages from "@/pages/not-found/messages";
 import orderPageMessages from "@/pages/orders/messages";
 import productDetailsMessages from "@/pages/product-details/messages";
 import productsItemsMessages from "@/pages/products/messages";
 import weatherMessages from "@/pages/weather/messages";
-
-import movieCommonMessages from "./constants/movie-common-messages";
 
 type MessagesType = Record<Locale, Record<string, string>>;
 
@@ -80,7 +82,10 @@ const messages: MessagesType = {
     ...dashboardOrderDetailsPageMessages.en,
     ...productDetailsMessages.en,
     ...dashboardProductMessages.en,
-    ...weatherMessages.en
+    ...weatherMessages.en,
+    ...moviePageMessages.en,
+    ...moviesContainerMessages.en,
+    ...moviesSearchbarMessages.en
   },
   uk: {
     ...movieCommonMessages.uk,
@@ -119,7 +124,10 @@ const messages: MessagesType = {
     ...dashboardOrderDetailsPageMessages.uk,
     ...productDetailsMessages.uk,
     ...dashboardProductMessages.uk,
-    ...weatherMessages.uk
+    ...weatherMessages.uk,
+    ...moviePageMessages.uk,
+    ...moviesContainerMessages.uk,
+    ...moviesSearchbarMessages.uk
   }
 };
 

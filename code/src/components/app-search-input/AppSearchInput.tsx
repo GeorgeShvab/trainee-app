@@ -1,3 +1,5 @@
+import { KeyboardEvent } from "react";
+
 import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "@mui/icons-material/Search";
 import Paper from "@mui/material/Paper";
@@ -15,6 +17,12 @@ const AppSearchInput = ({
   placeholder,
   ...props
 }: AppSearchInputProps) => {
+  const handleKeyUp = (e: KeyboardEvent) => {
+    if (e.code === "Enter" && onSearch) {
+      onSearch();
+    }
+  };
+
   const clearButton = value ? (
     <AppIconButton aria-label="clear" onClick={onClear}>
       <ClearIcon fontSize="small" />
@@ -27,6 +35,7 @@ const AppSearchInput = ({
         className="spa-search-input-field__input-base"
         placeholder={placeholder}
         value={value}
+        onKeyUp={handleKeyUp}
         {...props}
       />
       {clearButton}
