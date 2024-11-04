@@ -20,7 +20,8 @@ export default defineConfig({
       return config;
     },
     specPattern: "cypress/features/**/*.feature",
-    supportFile: "cypress/support/index.ts"
+    supportFile: "cypress/support/index.ts",
+    experimentalRunAllSpecs: true
   },
   env: {
     TAGS: "not @ignore",
