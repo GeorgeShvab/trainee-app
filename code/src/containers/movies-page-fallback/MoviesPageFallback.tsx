@@ -14,6 +14,7 @@ const MoviesPageFallback: FC<MoviesPageFallbackProps> = ({
     <AppBox className="movies-page-fallback">
       <AppTypography
         className="movies-page-fallback__text"
+        data-cy="movies-search-fallback"
         translationKey={translationKey}
       />
     </AppBox>

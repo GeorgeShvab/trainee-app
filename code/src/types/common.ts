@@ -65,3 +65,7 @@ export type PageableResponse<Content> = {
   empty: boolean;
   content: Content;
 };
+
+export interface CypressProps {
+  "data-cy"?: string;
+}

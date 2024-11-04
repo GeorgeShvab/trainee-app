@@ -33,6 +33,7 @@ const MoviesPage = () => {
   ) : (
     <>
       <AppTypography
+        data-cy="movies-results-counter"
         translationKey={isLoading ? "" : "moviesPage.resultsCount"}
         translationProps={{
           values: {

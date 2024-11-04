@@ -5,7 +5,7 @@ import "@/components/movie-card-skeleton/MovieCardSkeleton.scss";
 
 const MovieCardSkeleton = () => {
   return (
-    <AppBox className="movie-card-skeleton">
+    <AppBox className="movie-card-skeleton" data-cy="movie-card-skeleton">
       <AppSkeleton
         className="movie-card-skeleton__element"
         variant="rectangular"

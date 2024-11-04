@@ -28,9 +28,12 @@ const MoviesSearchbar = () => {
     <AppSearchInput
       onChange={handleChange}
       onSearch={handleSearch}
+      data-cy="movie-search-input"
       value={value}
       placeholder={formatMessage({ id: "moviesSearchbar.searchPlaceholder" })}
       name="query"
+      clearButtonProps={{ "data-cy": "movie-search-clear-button" }}
+      submitButtonProps={{ "data-cy": "movie-search-submit-button" }}
     />
   );
 };

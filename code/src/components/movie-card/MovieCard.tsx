@@ -33,7 +33,11 @@ const MovieCard: FC<MovieCardProps> = ({
   ));
 
   return (
-    <AppBox className="movie-card" data-testid="movie-card">
+    <AppBox
+      className="movie-card"
+      data-testid="movie-card"
+      data-cy="movie-card"
+    >
       <AppBox
         component="img"
         className="movie-card__img"

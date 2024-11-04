@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import MovieCardSkeleton from "./MovieCardSkeleton";
+import MovieCardSkeleton from "@/components/movie-card-skeleton/MovieCardSkeleton";
 
 describe("Test MovieCardSkeleton", () => {
   test("Should render skeleton", () => {
