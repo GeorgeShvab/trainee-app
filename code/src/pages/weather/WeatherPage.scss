@@ -7,3 +7,24 @@
   flex-direction: column;
   gap: spacing(5);
 }
+
+.spa-weather-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: spacing(4);
+}
+
+.spa-search-input-field {
+  max-width: 400px;
+}
+
+.spa-search-message {
+  font-size: 1.2rem;
+  color: #888;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 500;
+  opacity: 0.8;
+}

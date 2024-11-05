@@ -1,3 +1,12 @@
 {
-  "weather.label": "Погода"
+  "weather.label": "Погода",
+  "weather.title": "Додаток погоди",
+  "weather.feel": "Відчувається як",
+  "weather.clouds": "похмурі хмари",
+  "weather.precipitation": "Опади",
+  "weather.wind": "Вітер",
+  "weather.humidity": "Вологість",
+  "weather.cloudsCover": "Хмарність",
+  "weather.pressure": "Тиск",
+  "weather.visibillity": "Видимість"
 }
