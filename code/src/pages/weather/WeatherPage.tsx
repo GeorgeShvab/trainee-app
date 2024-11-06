@@ -68,18 +68,20 @@ const WeatherPage = () => {
         component="h1"
         textAlign="center"
         translationKey="errors.somethingWentWrong"
+        data-cy="weather-error-message"
       />
     );
   }
 
   return (
     <PageWrapper>
-      <AppBox className="spa-weather-page">
-        <AppBox className="spa-weather-header">
+      <AppBox className="spa-weather-page" data-cy="weather-page">
+        <AppBox className="spa-weather-header" data-cy="weather-header">
           <AppTypography
             variant="h3"
             translationKey="weather.title"
             fontWeight="extra-bold"
+            data-cy="weather-title"
           />
           <AppSearchInput
             value={city}
@@ -88,12 +90,17 @@ const WeatherPage = () => {
             onSearch={handleSearch}
             onKeyPress={handleKeyPress}
             placeholder={formatMessage({ id: "header.searchInputPlaceholder" })}
+            data-cy="app-search-input"
           />
         </AppBox>
         {city === "" && (
-          <p className="spa-search-message">Please type the input search</p>
+          <p className="spa-search-message" data-cy="empty-search-message">
+            Please type the input search
+          </p>
         )}
-        {cityData && searchCity && <WeatherCard cityData={cityData} />}
+        {cityData && searchCity && (
+          <WeatherCard cityData={cityData} data-cy="weather-card" />
+        )}
       </AppBox>
     </PageWrapper>
   );

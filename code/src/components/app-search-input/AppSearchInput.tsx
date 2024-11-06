@@ -16,7 +16,11 @@ const AppSearchInput = ({
   ...props
 }: AppSearchInputProps) => {
   const clearButton = value ? (
-    <AppIconButton aria-label="clear" onClick={onClear}>
+    <AppIconButton
+      aria-label="clear"
+      onClick={onClear}
+      data-cy="app-search-input-clear"
+    >
       <ClearIcon fontSize="small" />
     </AppIconButton>
   ) : null;
@@ -34,6 +38,7 @@ const AppSearchInput = ({
         aria-label="search"
         onClick={onSearch}
         className="spa-search-input-field__search-icon"
+        data-cy="app-search-input-submit"
       >
         <SearchIcon />
       </AppIconButton>
