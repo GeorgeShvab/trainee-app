@@ -15,8 +15,6 @@ const AppSearchInput = ({
   onClear,
   value,
   placeholder,
-  clearButtonProps,
-  submitButtonProps,
   ...props
 }: AppSearchInputProps) => {
   const handleKeyUp = (e: KeyboardEvent) => {
@@ -26,7 +24,11 @@ const AppSearchInput = ({
   };
 
   const clearButton = value ? (
-    <AppIconButton aria-label="clear" onClick={onClear} {...clearButtonProps}>
+    <AppIconButton
+      aria-label="clear"
+      data-cy="app-search-input-clear"
+      onClick={onClear}
+    >
       <ClearIcon fontSize="small" />
     </AppIconButton>
   ) : null;
@@ -45,7 +47,7 @@ const AppSearchInput = ({
         aria-label="search"
         onClick={onSearch}
         className="spa-search-input-field__search-icon"
-        {...submitButtonProps}
+        data-cy="app-search-input-submit"
       >
         <SearchIcon />
       </AppIconButton>

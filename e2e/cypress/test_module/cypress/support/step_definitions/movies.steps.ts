@@ -17,7 +17,7 @@ Given("I have bad internet connection that results in error", () => {
 });
 
 When("I have not entered any search query", () => {
-  cy.getById("movie-search-input").should("have.value", "");
+  cy.getById("app-search-input").should("have.value", "");
 });
 
 Then(
@@ -28,7 +28,7 @@ Then(
 );
 
 When("I enter {string} into the search input", (value: string) => {
-  cy.getById("movie-search-input").type(value);
+  cy.getById("app-search-input").type(value);
 });
 
 When(
@@ -37,12 +37,20 @@ When(
     cy.intercept(httpMethod.get, /search\/movie/, {
       fixture: "empty-movie-search-response"
     }).as("movieSearchRequest");
-    cy.getById("movie-search-input").type(value);
+    cy.getById("app-search-input").type(value);
   }
 );
 
 When("I click the search button", () => {
-  cy.getById("movie-search-submit-button").click();
+  cy.getById("app-search-input-submit").click();
+});
+
+When("I clear the search input", () => {
+  cy.getById("app-search-input-clear").click();
+});
+
+Then("I should see an empty search input", () => {
+  cy.getById("app-search-input").should("have.value", "");
 });
 
 Then("The search counter should display the number of results found", () => {

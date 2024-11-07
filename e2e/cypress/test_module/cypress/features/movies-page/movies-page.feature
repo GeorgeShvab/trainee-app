@@ -18,6 +18,11 @@ Feature: | Movie Search Functionality |
     And I click the search button
     Then I should see a movie search fallback displaying "Unexpected error occured!"
 
+  Scenario: Clear search input after typing
+    When I enter "Movie" into the search input
+    And I clear the search input
+    Then I should see an empty search input
+
   Scenario: Display loading state during search
     When I enter "Shrek" into the search input
     And I click the search button
