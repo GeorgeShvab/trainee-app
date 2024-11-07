@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import { ChangeEvent, KeyboardEvent } from "react";
+import { ChangeEvent } from "react";
 import { useIntl } from "react-intl";
 import { useSearchParams } from "react-router-dom";
 
@@ -121,36 +121,6 @@ describe("useWeatherSearch", () => {
     });
 
     expect(mockSetSearchParams).toHaveBeenCalledWith({ query: "Paris" });
-  });
-
-  test("should not trigger search on non-Enter key press", () => {
-    const { result } = renderHook(() => useWeatherSearch());
-
-    act(() => {
-      result.current.handleKeyPress({
-        key: "A"
-      } as KeyboardEvent<HTMLInputElement>);
-    });
-
-    expect(mockSetSearchParams).not.toHaveBeenCalled();
-  });
-
-  test("should trigger handleSearch on Enter key press", () => {
-    const { result } = renderHook(() => useWeatherSearch());
-
-    act(() => {
-      result.current.handleSearchChange({
-        target: { value: "Berlin" }
-      } as ChangeEvent<HTMLInputElement>);
-    });
-
-    act(() => {
-      result.current.handleKeyPress({
-        key: "Enter"
-      } as KeyboardEvent<HTMLInputElement>);
-    });
-
-    expect(mockSetSearchParams).toHaveBeenCalledWith({ query: "Berlin" });
   });
 
   test("should skip fetching weather data when searchCity is empty", () => {

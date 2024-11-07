@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 import { useSearchParams } from "react-router-dom";
 
@@ -41,12 +41,6 @@ const useWeatherSearch = () => {
     }
   };
 
-  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      handleSearch();
-    }
-  };
-
   return {
     city,
     cityData,
@@ -55,8 +49,7 @@ const useWeatherSearch = () => {
     formatMessage,
     handleSearchChange,
     handleClearSearch,
-    handleSearch,
-    handleKeyPress
+    handleSearch
   };
 };
 

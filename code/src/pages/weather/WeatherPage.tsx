@@ -20,8 +20,7 @@ const WeatherPage = () => {
     formatMessage,
     handleSearchChange,
     handleClearSearch,
-    handleSearch,
-    handleKeyPress
+    handleSearch
   } = useWeatherSearch();
 
   if (cityLoading) return <PageLoadingFallback />;
@@ -67,7 +66,6 @@ const WeatherPage = () => {
             onChange={handleSearchChange}
             onClear={handleClearSearch}
             onSearch={handleSearch}
-            onKeyPress={handleKeyPress}
             placeholder={formatMessage({ id: "header.searchInputPlaceholder" })}
             data-cy="app-search-input"
           />

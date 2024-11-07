@@ -148,26 +148,6 @@ describe("WeatherPage", () => {
     expect(mockSetSearchParams).toHaveBeenCalledWith({ query: "New York" });
   });
 
-  test("triggers search when Enter key is pressed", () => {
-    renderAndMock();
-
-    const searchInput = screen.getByPlaceholderText(
-      /header.searchInputPlaceholder/i
-    );
-
-    fireEvent.change(searchInput, { target: { value: "San Francisco" } });
-
-    fireEvent.keyPress(searchInput, {
-      key: "Enter",
-      code: "Enter",
-      charCode: 13
-    });
-
-    expect(mockSetSearchParams).toHaveBeenCalledWith({
-      query: "San Francisco"
-    });
-  });
-
   test("does not trigger search on non-Enter key press", () => {
     renderAndMock();
 
