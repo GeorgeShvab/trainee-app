@@ -8,5 +8,6 @@
   "weather.humidity": "Вологість",
   "weather.cloudsCover": "Хмарність",
   "weather.pressure": "Тиск",
-  "weather.visibillity": "Видимість"
+  "weather.visibility": "Видимість",
+  "weather.empty": "Будь ласка, введіть пошуковий запит"
 }

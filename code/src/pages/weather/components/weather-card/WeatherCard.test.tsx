@@ -30,7 +30,7 @@ describe("WeatherCard", () => {
   });
 
   test("renders the weather icon", () => {
-    const weatherIcon = screen.getByAltText("Weather Icon");
+    const weatherIcon = screen.getByAltText("clear sky icon");
 
     expect(weatherIcon).toHaveAttribute(
       "src",

@@ -8,5 +8,6 @@
   "weather.humidity": "Humidity",
   "weather.cloudsCover": "Clouds cover",
   "weather.pressure": "Pressure",
-  "weather.visibillity": "Visibillity"
+  "weather.visibility": "Visibility",
+  "weather.empty": "Please type the input search"
 }

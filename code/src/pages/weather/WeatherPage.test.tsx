@@ -111,7 +111,7 @@ describe("WeatherPage", () => {
   test("displays a message prompting input when search is empty", () => {
     renderAndMock();
 
-    const promptMessage = screen.getByText("Please type the input search");
+    const promptMessage = screen.getByText(/weather.empty/i);
 
     expect(promptMessage).toBeInTheDocument();
   });
