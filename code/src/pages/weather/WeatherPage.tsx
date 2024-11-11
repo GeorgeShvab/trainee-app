@@ -42,7 +42,7 @@ const WeatherPage = () => {
       variant="caption-small"
       component="p"
       translationKey="weather.empty"
-      className="spa-search-message"
+      className="spa-weather-page__search-message"
       data-cy="empty-search-message"
     />
   );
@@ -54,7 +54,7 @@ const WeatherPage = () => {
   return (
     <PageWrapper>
       <AppBox className="spa-weather-page" data-cy="weather-page">
-        <AppBox className="spa-weather-header" data-cy="weather-header">
+        <AppBox className="spa-weather-page__header" data-cy="weather-header">
           <AppTypography
             variant="h3"
             translationKey="weather.title"

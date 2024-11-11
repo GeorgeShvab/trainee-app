@@ -12,8 +12,8 @@ const WeatherCard: FC<WeatherCardProps> = ({ cityData }) => {
   const weatherDetails = getWeatherDetails(cityData);
 
   return (
-    <AppBox className="spa-weather-card__container">
-      <AppBox className="spa-weather-card__left">
+    <AppBox className="spa-weather-card">
+      <AppBox className="spa-weather-card__section spa-weather-card__section--left">
         <AppBox className="spa-weather-card__icon-container">
           <img
             src={`https://openweathermap.org/img/wn/${cityData.weather[0].icon}@2x.png`}
@@ -21,7 +21,7 @@ const WeatherCard: FC<WeatherCardProps> = ({ cityData }) => {
             className="spa-weather-card__icon"
           />
         </AppBox>
-        <AppBox className="spa-weather-card__main-info">
+        <AppBox className="spa-weather-card__info">
           <AppTypography variant="h2" component="h2">
             {`${cityData.main.temp.toFixed(1)}°C`}
           </AppTypography>
@@ -35,8 +35,7 @@ const WeatherCard: FC<WeatherCardProps> = ({ cityData }) => {
           </AppTypography>
         </AppBox>
       </AppBox>
-
-      <AppBox className="spa-weather-card__right">
+      <AppBox className="spa-weather-card__section spa-weather-card__section--right">
         {weatherDetails.map((detail, index) => (
           <AppBox key={index} className="spa-weather-card__detail">
             {detail.icon}
