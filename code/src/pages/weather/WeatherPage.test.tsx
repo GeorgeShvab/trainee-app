@@ -1,5 +1,7 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { useSearchParams } from "react-router-dom";
+
+import userEvent from "@testing-library/user-event";
 
 import WeatherPage from "@/pages/weather/WeatherPage";
 import { useGetWeatherByCityQuery } from "@/store/api/weatherApi";
@@ -53,30 +55,30 @@ describe("WeatherPage", () => {
     jest.clearAllMocks();
   });
 
-  test("renders the search input and allows typing", () => {
+  test("renders the search input and allows typing", async () => {
     renderAndMock();
 
     const searchInput = screen.getByPlaceholderText(
       /header.searchInputPlaceholder/i
     );
 
-    fireEvent.change(searchInput, { target: { value: "New York" } });
+    await userEvent.type(searchInput, "New York");
 
     expect(searchInput).toHaveValue("New York");
   });
 
-  test("clears the search input when handleClearSearch is called", () => {
+  test("clears the search input when handleClearSearch is called", async () => {
     renderAndMock();
 
     const searchInput = screen.getByPlaceholderText(
       /header.searchInputPlaceholder/i
     );
 
-    fireEvent.change(searchInput, { target: { value: "New York" } });
+    await userEvent.type(searchInput, "New York");
 
     const clearButton = screen.getByRole("button", { name: /clear/i });
 
-    fireEvent.click(clearButton);
+    await userEvent.click(clearButton);
 
     expect(searchInput).toHaveValue("");
     expect(mockSetSearchParams).toHaveBeenCalledWith({});
@@ -116,48 +118,48 @@ describe("WeatherPage", () => {
     expect(promptMessage).toBeInTheDocument();
   });
 
-  test("does not set search parameters when handleSearch is called with empty input", () => {
+  test("does not set search parameters when handleSearch is called with empty input", async () => {
     renderAndMock();
 
     const searchInput = screen.getByPlaceholderText(
       /header.searchInputPlaceholder/i
     );
 
-    fireEvent.change(searchInput, { target: { value: " " } });
+    await userEvent.type(searchInput, " ");
 
     const searchButton = screen.getByRole("button", { name: /search/i });
 
-    fireEvent.click(searchButton);
+    await userEvent.click(searchButton);
 
     expect(mockSetSearchParams).not.toHaveBeenCalled();
   });
 
-  test("sets search parameters when handleSearch is called with non-empty input", () => {
+  test("sets search parameters when handleSearch is called with non-empty input", async () => {
     renderAndMock();
 
     const searchInput = screen.getByPlaceholderText(
       /header.searchInputPlaceholder/i
     );
 
-    fireEvent.change(searchInput, { target: { value: "New York" } });
+    await userEvent.type(searchInput, "New York");
 
     const searchButton = screen.getByRole("button", { name: /search/i });
 
-    fireEvent.click(searchButton);
+    await userEvent.click(searchButton);
 
     expect(mockSetSearchParams).toHaveBeenCalledWith({ query: "New York" });
   });
 
-  test("does not trigger search on non-Enter key press", () => {
+  test("does not trigger search on non-Enter key press", async () => {
     renderAndMock();
 
     const searchInput = screen.getByPlaceholderText(
       /header.searchInputPlaceholder/i
     );
 
-    fireEvent.change(searchInput, { target: { value: "Los Angeles" } });
+    await userEvent.type(searchInput, "Los Angeles");
 
-    fireEvent.keyPress(searchInput, { key: "a", code: "KeyA", charCode: 65 });
+    await userEvent.keyboard("a");
 
     expect(mockSetSearchParams).not.toHaveBeenCalled();
   });
