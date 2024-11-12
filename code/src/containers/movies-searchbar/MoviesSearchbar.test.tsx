@@ -1,5 +1,7 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { useSearchParams } from "react-router-dom";
+
+import userEvent from "@testing-library/user-event";
 
 import MoviesSearchbar from "@/containers/movies-searchbar/MoviesSearchbar";
 
@@ -49,15 +51,15 @@ describe("Test movie searchbar", () => {
     expect(input).toHaveAttribute("value", initialQuery);
   });
 
-  test("Should input text and set right query after submit is hit", () => {
+  test("Should input text and set right query after submit is hit", async () => {
     renderAndMock();
 
     const input = screen.getByRole("textbox");
     const submitButton = screen.getByTestId("SearchIcon");
 
-    typeIntoInput(input, testQuery);
+    await typeIntoInput(input, testQuery);
 
-    fireEvent.click(submitButton);
+    await userEvent.click(submitButton);
 
     expect(mockNavigate).toHaveBeenCalledWith(`?query=${testQuery}`);
   });

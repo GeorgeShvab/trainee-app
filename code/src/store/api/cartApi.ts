@@ -43,14 +43,9 @@ const cartApi = appApi.injectEndpoints({
 
         return value;
       }
-    }),
-    search: build.query({
-      query: () => ``
     })
   })
 });
-
-cartApi.useSearchQuery;
 
 export const {
   useGetCartItemsQuery,

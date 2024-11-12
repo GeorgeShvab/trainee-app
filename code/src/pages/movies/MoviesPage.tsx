@@ -28,9 +28,7 @@ const MoviesPage = () => {
     </AppBox>
   );
 
-  const content = !query ? (
-    <MoviesPageFallback translationKey="moviesPage.emptyQueryFallback" />
-  ) : (
+  const content = query ? (
     <>
       <AppTypography
         data-cy="movies-results-counter"
@@ -47,6 +45,8 @@ const MoviesPage = () => {
         isError={isError}
       />
     </>
+  ) : (
+    <MoviesPageFallback translationKey="moviesPage.emptyQueryFallback" />
   );
 
   return (
