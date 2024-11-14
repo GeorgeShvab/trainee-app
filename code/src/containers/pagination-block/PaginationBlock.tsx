@@ -5,7 +5,7 @@ import cn from "@/utils/cn/cn";
 
 import "@/containers/pagination-block/PaginationBlock.scss";
 
-type PaginationBlockProps = {
+export type PaginationBlockProps = {
   page?: number;
   totalPages?: number;
   className?: string;
