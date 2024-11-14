@@ -26,8 +26,8 @@ const AppSearchInput = ({
   const clearButton = value ? (
     <AppIconButton
       aria-label="clear"
-      onClick={onClear}
       data-cy="app-search-input-clear"
+      onClick={onClear}
     >
       <ClearIcon fontSize="small" />
     </AppIconButton>

@@ -1,0 +1,57 @@
+@import "@design-system";
+
+.movie-card {
+  transition: 0.3s transform;
+
+  &:hover {
+    transform: scale(1.025);
+  }
+
+  &__img {
+    width: 100%;
+    aspect-ratio: 1 / 1.5;
+    margin-bottom: spacing(2);
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  &__title {
+    font-size: $fs-sm;
+    font-weight: 600;
+    margin-bottom: spacing(2);
+  }
+
+  &__release-date {
+    font-size: $fs-xs;
+    color: $gray;
+  }
+
+  &__footer {
+    padding: 0 spacing(1);
+  }
+
+  &__additional-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+  }
+
+  &__star-icon {
+    height: 14px;
+    width: 14px;
+    color: $gray;
+
+    &--filled {
+      color: gold;
+    }
+  }
+
+  &__rating-points {
+    font-size: $fs-xs;
+  }
+}

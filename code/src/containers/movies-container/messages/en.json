@@ -1,0 +1,4 @@
+{
+  "moviesContainer.errorFallback": "Unexpected error occured!",
+  "moviesContainer.notFoundFallback": "We couldn’t find any movies for your search."
+}

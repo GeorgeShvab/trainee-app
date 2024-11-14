@@ -1,0 +1,8 @@
+.movie-card-skeleton {
+  aspect-ratio: 7 /12;
+  display: block;
+
+  &__element {
+    border-radius: 5px;
+  }
+}

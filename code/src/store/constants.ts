@@ -1,5 +1,6 @@
 export const apiNames = {
   app: "appApi",
+  movie: "movieApi",
   weather: "weatherApi"
 } as const;
 

@@ -1,0 +1,5 @@
+{
+  "moviesPage.title": "Search Movies",
+  "moviesPage.resultsCount": "Found {count} movies matching your search",
+  "moviesPage.emptyQueryFallback": "Looking for a movie? Type movie name and hit Enter!"
+}

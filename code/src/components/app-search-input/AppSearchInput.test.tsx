@@ -59,7 +59,6 @@ describe("AppSearchInput ", () => {
     renderComponent();
 
     const searchButton = screen.getByTestId(/SearchIcon/);
-
     await userEvent.click(searchButton);
 
     expect(handleSearch).toHaveBeenCalled();
@@ -70,7 +69,7 @@ describe("AppSearchInput ", () => {
 
     const inputElement = screen.getByPlaceholderText(placeholder);
 
-    await userEvent.type(inputElement, "{Enter}");
+    await userEvent.type(inputElement, "{enter}");
 
     expect(handleSearch).toHaveBeenCalled();
   });
@@ -80,7 +79,7 @@ describe("AppSearchInput ", () => {
 
     const inputElement = screen.getByPlaceholderText(placeholder);
 
-    await userEvent.type(inputElement, "{Enter}");
+    await userEvent.type(inputElement, "{enter}");
 
     expect(handleSearch).not.toHaveBeenCalled();
   });
@@ -89,7 +88,6 @@ describe("AppSearchInput ", () => {
     renderComponent();
 
     const clearButton = screen.getByTestId(/ClearIcon/i);
-
     await userEvent.click(clearButton);
 
     expect(handleClear).toHaveBeenCalled();

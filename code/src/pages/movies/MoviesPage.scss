@@ -1,0 +1,20 @@
+@import "@design-system";
+
+.movies-page {
+  padding: spacing(10);
+  background-color: var(--spa-foreground-background-color, $white);
+  display: flex;
+  flex-direction: column;
+  gap: spacing(5);
+
+  &__movies-list {
+    display: grid;
+    column-gap: spacing(4);
+    row-gap: spacing(6);
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  &__results-counter {
+    color: $purple;
+  }
+}

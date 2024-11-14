@@ -1,0 +1,12 @@
+@import "@design-system";
+
+.movies-page-fallback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+
+  &__text {
+    color: $gray;
+  }
+}
