@@ -1,4 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+
+import userEvent from "@testing-library/user-event";
 
 import AppSearchInput from "@/components/app-search-input/AppSearchInput";
 import { AppSearchInputProps } from "@/components/app-search-input/AppSearchInput.types";
@@ -21,6 +23,10 @@ const renderComponent = (props: Partial<AppSearchInputProps> = mockProps) => {
 };
 
 describe("AppSearchInput ", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("Should render search input field", () => {
     renderComponent();
 
@@ -49,19 +55,43 @@ describe("AppSearchInput ", () => {
     expect(clearButton).not.toBeInTheDocument();
   });
 
-  test("Should call onSearch when search button is clicked", () => {
+  test("Should call onSearch when search button is clicked", async () => {
     renderComponent();
 
     const searchButton = screen.getByTestId(/SearchIcon/);
-    fireEvent.click(searchButton);
+
+    await userEvent.click(searchButton);
+
     expect(handleSearch).toHaveBeenCalled();
   });
 
-  test("Should call onClear when clear button is clicked", () => {
+  test("Should call onSearch when enter is clicked", async () => {
+    renderComponent();
+
+    const inputElement = screen.getByPlaceholderText(placeholder);
+
+    await userEvent.type(inputElement, "{Enter}");
+
+    expect(handleSearch).toHaveBeenCalled();
+  });
+
+  test("Should not call onSearch when enter is clicked if there is no onSearch", async () => {
+    renderComponent({ onSearch: undefined });
+
+    const inputElement = screen.getByPlaceholderText(placeholder);
+
+    await userEvent.type(inputElement, "{Enter}");
+
+    expect(handleSearch).not.toHaveBeenCalled();
+  });
+
+  test("Should call onClear when clear button is clicked", async () => {
     renderComponent();
 
     const clearButton = screen.getByTestId(/ClearIcon/i);
-    fireEvent.click(clearButton);
+
+    await userEvent.click(clearButton);
+
     expect(handleClear).toHaveBeenCalled();
   });
 });

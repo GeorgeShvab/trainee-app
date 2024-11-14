@@ -1,0 +1,57 @@
+@import "@design-system";
+
+.spa-weather-card {
+  display: flex;
+  gap: spacing(4);
+  padding: spacing(4);
+  background-color: $light;
+  border-radius: spacing(2);
+  box-shadow: $shadow-black;
+
+  &__section {
+    background-color: $white;
+    border-radius: spacing(2);
+    padding: spacing(4);
+    box-shadow: $shadow-black-alpha;
+
+    &--left {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &--right {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: spacing(3);
+    }
+  }
+
+  &__icon-container {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: spacing(4);
+  }
+
+  &__icon {
+    @include box(200px);
+  }
+
+  &__info {
+    flex: 1;
+    text-align: left;
+  }
+
+  &__detail {
+    display: flex;
+    align-items: center;
+    gap: spacing(2);
+    padding: spacing(3);
+    border-radius: spacing(2);
+    background-color: $light;
+    text-align: left;
+  }
+}
