@@ -4,7 +4,7 @@ import { httpMethod } from "@cypress-e2e/fixtures/global-data";
 Given("I am on the movies search page", () => {
   cy.visitWithLanguage("/movies");
   cy.intercept(httpMethod.get, /search\/movie/, {
-    fixture: "success-movie-search-response",
+    fixture: "success-movie-search-response-1-page",
     delay: 100
   }).as("movieSearchRequest");
 });
@@ -55,7 +55,7 @@ Then("I should see an empty search input", () => {
 
 Then("The search counter should display the number of results found", () => {
   cy.getById("movies-results-counter").contains(
-    "Found 3 movies matching your search"
+    "Found 29 movies matching your search"
   );
 });
 
@@ -67,12 +67,71 @@ Then("I should see a loading state", () => {
   cy.getById("movie-card-skeleton").should("have.length", 10);
 });
 
-Then("The request should be sent with {string} query", (expectedQuery) => {
-  cy.wait("@movieSearchRequest")
+Then(
+  "The request should be sent with {string} query",
+  (expectedQuery: string) => {
+    cy.wait("@movieSearchRequest")
+      .its("request.url")
+      .then((url) => {
+        const searchParams = new URLSearchParams(new URL(url).search);
+        const query = searchParams.get("query");
+
+        expect(query).to.equal(expectedQuery);
+      });
+  }
+);
+
+Then("The request should be sent with {int} page", (expectedPage: number) => {
+  cy.wait("@movieSearchRequestPage" + expectedPage)
     .its("request.url")
     .then((url) => {
       const searchParams = new URLSearchParams(new URL(url).search);
-      const query = searchParams.get("query");
-      expect(query).to.equal(expectedQuery);
+      const page = Number(searchParams.get("page"));
+
+      expect(page).to.equal(expectedPage);
     });
+});
+
+Then("I should be on {int} page", (page: number) => {
+  cy.get(`[aria-label="page ${page}"]`).should("have.class", "Mui-selected");
+});
+
+When("I navigate to {int} page", (page: number) => {
+  cy.intercept(
+    httpMethod.get,
+    new RegExp(`search/movie.*[?&]page=${page}\\b`),
+    {
+      fixture: "success-movie-search-response-2-page",
+      delay: 100
+    }
+  ).as("movieSearchRequestPage" + page);
+  cy.get(`[aria-label="Go to page ${page}"]`).click();
+});
+
+When("I navigate to previous page from {int} page", (page: number) => {
+  const nextPage = page + 1;
+
+  cy.intercept(
+    httpMethod.get,
+    new RegExp(`search/movie.*[?&]page=${nextPage}\\b`),
+    {
+      fixture: "success-movie-search-response-2-page",
+      delay: 100
+    }
+  ).as("movieSearchRequestPage" + nextPage);
+  cy.get(`[aria-label="Go to previous page"]`).click();
+});
+
+When("I navigate to next page from {int} page", (page: number) => {
+  const nextPage = page + 1;
+
+  cy.intercept(
+    httpMethod.get,
+    new RegExp(`search/movie.*[?&]page=${nextPage}\\b`),
+    {
+      fixture: "success-movie-search-response-2-page",
+      delay: 100
+    }
+  ).as("movieSearchRequestPage" + nextPage);
+  cy.get(`[aria-label="Go to next page"]`).click();
 });

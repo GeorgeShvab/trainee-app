@@ -32,5 +32,30 @@ Feature: | Movie Search Functionality |
     When I enter "Shrek" into the search input
     And I click the search button
     Then The request should be sent with "Shrek" query
-    And I should see 3 movie cards
+    And I should see 20 movie cards
     And The search counter should display the number of results found
+
+  Scenario: Navigates to specific page
+    When I enter "Shrek" into the search input
+    And I click the search button
+    And I navigate to 2 page
+    Then The request should be sent with "Shrek" query
+    And The request should be sent with 2 page
+    And I should be on 2 page
+
+  Scenario: Navigates to next page
+    When I enter "Shrek" into the search input
+    And I click the search button
+    And I navigate to next page from 1 page
+    Then The request should be sent with "Shrek" query
+    And The request should be sent with 2 page
+    And I should be on 2 page
+
+  Scenario: Navigates to previos page
+    When I enter "Shrek" into the search input
+    And I click the search button
+    And I navigate to next page from 1 page
+    And I navigate to previous page from 2 page
+    Then The request should be sent with "Shrek" query
+    And The request should be sent with 2 page
+    And I should be on 1 page
