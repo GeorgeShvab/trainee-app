@@ -1,6 +1,7 @@
 export const apiNames = {
   app: "appApi",
-  movie: "movieApi"
+  movie: "movieApi",
+  weather: "weatherApi"
 } as const;
 
 export const sliceNames = {

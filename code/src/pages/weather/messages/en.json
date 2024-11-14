@@ -1,3 +1,13 @@
 {
-  "weather.label": "Weather"
+  "weather.label": "Weather",
+  "weather.title": "Weather App",
+  "weather.feel": "Feels like",
+  "weather.clouds": "overcast clouds",
+  "weather.precipitation": "Precipitation",
+  "weather.wind": "Wind",
+  "weather.humidity": "Humidity",
+  "weather.cloudsCover": "Clouds cover",
+  "weather.pressure": "Pressure",
+  "weather.visibility": "Visibility",
+  "weather.empty": "Please type the input search"
 }

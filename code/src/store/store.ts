@@ -4,6 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { GetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 import { appApi } from "@/store/api/appApi";
+import { weatherApi } from "@/store/api/weatherApi";
 import cartLocalSavingMiddleware from "@/store/cartLocalSavingMiddleware";
 import { errorMiddleware } from "@/store/errorMiddleware";
 import { baseMovieApi } from "@/store/movieApi/baseMovieApi";
@@ -15,6 +16,7 @@ const middleware = <State>(
   return getDefaultMiddleware()
     .concat(appApi.middleware)
     .concat(baseMovieApi.middleware)
+    .concat(weatherApi.middleware)
     .concat(errorMiddleware)
     .concat(cartLocalSavingMiddleware);
 };
