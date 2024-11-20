@@ -27,10 +27,6 @@ Then(
   }
 );
 
-When("I enter {string} into the search input", (value: string) => {
-  cy.getById("app-search-input").type(value);
-});
-
 When(
   "I enter a non-existent movie name {string} into the search input",
   (value: string) => {
@@ -43,10 +39,6 @@ When(
 
 When("I click the search button", () => {
   cy.getById("app-search-input-submit").click();
-});
-
-When("I clear the search input", () => {
-  cy.getById("app-search-input-clear").click();
 });
 
 Then("I should see an empty search input", () => {
