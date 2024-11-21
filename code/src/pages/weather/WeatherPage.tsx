@@ -1,6 +1,10 @@
-import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
+import { useIntl } from "react-intl";
 
-import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
+import WeatherSearchDropdown from "@/layouts/weather/weather-search-dropdown/WeatherSearchDropdown";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppSearchInput from "@/components/app-search-input/AppSearchInput";
@@ -14,64 +18,100 @@ import "@/pages/weather/WeatherPage.scss";
 const WeatherPage = () => {
   const {
     city,
+    selectedCity,
     cityData,
     error,
-    cityLoading,
-    formatMessage,
+    searchResults,
+    isSearching,
+    isDropdownOpened,
+    searchInputRef,
     handleSearchChange,
-    handleClearSearch,
-    handleSearch
+    handleClearInput,
+    handleSelectCity
   } = useWeatherSearch();
 
-  if (cityLoading) return <PageLoadingFallback />;
+  const { formatMessage } = useIntl();
 
-  if (error) {
-    return (
-      <AppTypography
-        variant="h3"
-        component="h1"
-        textAlign="center"
-        translationKey="errors.somethingWentWrong"
-        data-cy="weather-error-message"
-      />
-    );
-  }
-
-  const isCityEmpty = city === "" && (
-    <AppTypography
-      variant="caption-small"
-      component="p"
-      translationKey="weather.empty"
-      className="spa-weather-page__search-message"
-      data-cy="empty-search-message"
+  const isDropdownContent = isDropdownOpened && (
+    <WeatherSearchDropdown
+      isLoading={isSearching}
+      isError={!!error}
+      searchResults={searchResults}
+      handleSelect={handleSelectCity}
     />
   );
 
-  const isShowCityCard = cityData && (
-    <WeatherCard cityData={cityData} data-cy="weather-card" />
+  const isLocationIcon = selectedCity && cityData && (
+    <LocationOnIcon className="spa-weather-page__location-icon" />
+  );
+
+  const isLocationCity =
+    selectedCity && cityData
+      ? `${selectedCity}, ${cityData?.sys?.country}`
+      : null;
+
+  const inputPlaceholder = formatMessage({
+    id: "header.searchInputPlaceholder"
+  });
+
+  const isCityValueMessage = !selectedCity &&
+    !searchResults?.length &&
+    !isSearching && (
+      <AppTypography
+        className="spa-weather-page__search-message"
+        translationKey="weather.inputSearch"
+      />
+    );
+
+  const isWeatherCard = selectedCity && cityData && (
+    <WeatherCard cityData={cityData} />
   );
 
   return (
     <PageWrapper>
-      <AppBox className="spa-weather-page" data-cy="weather-page">
+      <AppBox
+        className="spa-weather-page"
+        data-cy="weather-page"
+        ref={searchInputRef}
+      >
         <AppBox className="spa-weather-page__header" data-cy="weather-header">
-          <AppTypography
-            variant="h3"
-            translationKey="weather.title"
-            fontWeight="extra-bold"
-            data-cy="weather-title"
-          />
-          <AppSearchInput
-            value={city}
-            onChange={handleSearchChange}
-            onClear={handleClearSearch}
-            onSearch={handleSearch}
-            placeholder={formatMessage({ id: "header.searchInputPlaceholder" })}
-            data-cy="app-search-input"
-          />
+          <AppBox className="spa-weather-page__centered-icon-text">
+            <AppTypography
+              variant="h3"
+              translationKey="weather.title"
+              fontWeight="extra-bold"
+              data-cy="weather-title"
+              className="spa-weather-page__text"
+            />
+            <WbSunnyIcon className="spa-weather-page__icon" />
+          </AppBox>
+          <AppBox className="spa-weather-page__location">
+            <AppTypography
+              component="span"
+              className="spa-weather-page__location-text"
+            >
+              {isLocationIcon}
+            </AppTypography>
+            <AppTypography
+              component="span"
+              className="spa-weather-page__location-text"
+            >
+              {isLocationCity}
+            </AppTypography>
+          </AppBox>
+          <AppBox className="spa-weather-page__search-input">
+            <AppSearchInput
+              value={city}
+              onChange={handleSearchChange}
+              onClear={handleClearInput}
+              placeholder={inputPlaceholder}
+              data-cy="app-search-input"
+            />
+            {isDropdownContent}
+          </AppBox>
         </AppBox>
-        {isCityEmpty}
-        {isShowCityCard}
+        {isCityValueMessage}
+        {isWeatherCard}
       </AppBox>
     </PageWrapper>
   );

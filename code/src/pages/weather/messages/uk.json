@@ -9,5 +9,7 @@
   "weather.cloudsCover": "Хмарність",
   "weather.pressure": "Тиск",
   "weather.visibility": "Видимість",
-  "weather.empty": "Будь ласка, введіть пошуковий запит"
+  "weather.empty": "Будь ласка, введіть пошуковий запит",
+  "weather.error": "Щось пішло не так!",
+  "weather.inputSearch": "Будь ласка, введіть пошуковий запит"
 }

@@ -11,8 +11,13 @@ export const weatherApi = createApi({
     getWeatherByCity: build.query({
       query: (city) =>
         `weather?q=${city}&appid=${process.env.APP_WEATHER_API_KEY}&units=metric`
+    }),
+    searchCityByName: build.query({
+      query: (cityName) =>
+        `find?q=${cityName}&appid=${process.env.APP_WEATHER_API_KEY}&units=metric`
     })
   })
 });
 
-export const { useGetWeatherByCityQuery } = weatherApi;
+export const { useGetWeatherByCityQuery, useSearchCityByNameQuery } =
+  weatherApi;
