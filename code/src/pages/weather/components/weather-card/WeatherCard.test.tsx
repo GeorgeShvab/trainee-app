@@ -5,15 +5,25 @@ import { WeatherCardProps } from "@/pages/weather/types";
 
 const mockCityData: WeatherCardProps["cityData"] = {
   name: "Test City",
-  weather: [{ icon: "01d", description: "clear sky" }],
+  weather: [
+    {
+      id: 800,
+      main: "Clear",
+      icon: "01d",
+      description: "clear sky"
+    }
+  ],
   main: {
     temp: 23.5,
     feels_like: 22.0,
     humidity: 60,
-    pressure: 1012
+    pressure: 1012,
+    temp_min: 20.0,
+    temp_max: 25.0
   },
   wind: {
-    speed: 5.5
+    speed: 5.5,
+    deg: 200
   },
   rain: {
     "1h": 0.5
@@ -21,7 +31,12 @@ const mockCityData: WeatherCardProps["cityData"] = {
   clouds: {
     all: 20
   },
-  visibility: 10000
+  visibility: 10000,
+  id: 123456,
+  coord: { lat: 0, lon: 0 },
+  dt: 0,
+  sys: { country: "IN" },
+  snow: null
 };
 
 describe("WeatherCard", () => {

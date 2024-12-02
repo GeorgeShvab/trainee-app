@@ -9,5 +9,7 @@
   "weather.cloudsCover": "Clouds cover",
   "weather.pressure": "Pressure",
   "weather.visibility": "Visibility",
-  "weather.empty": "Please type the input search"
+  "weather.empty": "Please type the input search",
+  "weather.error": "Something went wrong!",
+  "weather.inputSearch": "Please type the input search"
 }

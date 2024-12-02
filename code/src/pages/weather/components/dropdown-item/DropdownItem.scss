@@ -1,0 +1,11 @@
+@import "@design-system";
+
+.weather-search-dropdown__item {
+  padding: spacing(3);
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--spa-weather-weather-search-dropdown-item, $white);
+  }
+}

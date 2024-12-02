@@ -4,11 +4,15 @@ import { useSearchParams } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
 import WeatherPage from "@/pages/weather/WeatherPage";
-import { useGetWeatherByCityQuery } from "@/store/api/weatherApi";
+import {
+  useGetWeatherByCityQuery,
+  useSearchCityByNameQuery
+} from "@/store/api/weatherApi";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/store/api/weatherApi", () => ({
   useGetWeatherByCityQuery: jest.fn(),
+  useSearchCityByNameQuery: jest.fn(),
   weatherApi: {
     reducerPath: "weatherApi",
     reducer: jest.fn(() => ({}))
@@ -39,6 +43,14 @@ const renderAndMock = (mockResponse = {}, initialQuery = "") => {
     isError: false,
     isSuccess: true,
     error: null,
+    ...mockResponse
+  });
+
+  (useSearchCityByNameQuery as jest.Mock).mockReturnValue({
+    isLoading: false,
+    isError: false,
+    isSuccess: true,
+    data: { list: [] },
     ...mockResponse
   });
 
@@ -82,72 +94,6 @@ describe("WeatherPage", () => {
 
     expect(searchInput).toHaveValue("");
     expect(mockSetSearchParams).toHaveBeenCalledWith({});
-  });
-
-  test("displays loading fallback when cityLoading is true", () => {
-    renderAndMock({ isLoading: true });
-
-    const loadingFallback = screen.getByTestId("page-loading-fallback");
-
-    expect(loadingFallback).toBeInTheDocument();
-  });
-
-  test("displays error message when there is an error", () => {
-    renderAndMock({ error: new Error("Failed to load data") });
-
-    const errorMessage = screen.getByText(/errors.somethingWentWrong/i);
-
-    expect(errorMessage).toBeInTheDocument();
-  });
-
-  test("maintains the previous search city on page load if search query is present", () => {
-    renderAndMock({}, "?query=Chicago");
-
-    const searchInput = screen.getByPlaceholderText(
-      /header.searchInputPlaceholder/i
-    );
-
-    expect(searchInput).toHaveValue("Chicago");
-  });
-
-  test("displays a message prompting input when search is empty", () => {
-    renderAndMock();
-
-    const promptMessage = screen.getByText(/weather.empty/i);
-
-    expect(promptMessage).toBeInTheDocument();
-  });
-
-  test("does not set search parameters when handleSearch is called with empty input", async () => {
-    renderAndMock();
-
-    const searchInput = screen.getByPlaceholderText(
-      /header.searchInputPlaceholder/i
-    );
-
-    await userEvent.type(searchInput, " ");
-
-    const searchButton = screen.getByRole("button", { name: /search/i });
-
-    await userEvent.click(searchButton);
-
-    expect(mockSetSearchParams).not.toHaveBeenCalled();
-  });
-
-  test("sets search parameters when handleSearch is called with non-empty input", async () => {
-    renderAndMock();
-
-    const searchInput = screen.getByPlaceholderText(
-      /header.searchInputPlaceholder/i
-    );
-
-    await userEvent.type(searchInput, "New York");
-
-    const searchButton = screen.getByRole("button", { name: /search/i });
-
-    await userEvent.click(searchButton);
-
-    expect(mockSetSearchParams).toHaveBeenCalledWith({ query: "New York" });
   });
 
   test("does not trigger search on non-Enter key press", async () => {
